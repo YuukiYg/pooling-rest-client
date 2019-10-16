@@ -27,6 +27,7 @@ public class PoolingRestTemplate {
         // コネクションプールのサイズ。
         // ↓この設定だと、最大同時接続数が10のRestTemplateを作れます。
         poolingConnectionManager.setMaxTotal(10);
+        poolingConnectionManager.setDefaultMaxPerRoute(10);
 
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
         httpClientBuilder.setConnectionManager(poolingConnectionManager);

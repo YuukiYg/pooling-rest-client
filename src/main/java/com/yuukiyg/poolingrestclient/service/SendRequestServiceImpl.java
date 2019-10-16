@@ -1,7 +1,7 @@
 /**
- * @(#)SendRequestService.java
+ * @(#)SendRequestServiceImpl.java
  */
-package com.yuukiyg.poolingrestclient;
+package com.yuukiyg.poolingrestclient.service;
 
 import java.net.URI;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -21,12 +21,13 @@ import org.springframework.web.util.UriComponentsBuilder;
  * [TODO write a specification of the class]
  * </p>
  */
-@Service
-public class SendRequestService {
+@Component
+public class SendRequestServiceImpl implements SendRequestService{
 
     @Autowired
     RestTemplate restTemplate;
 
+    @Override
     public void execute() {
 
         // 100並列の非同期実行
@@ -54,4 +55,5 @@ public class SendRequestService {
             }).start();
         }
     }
+
 }

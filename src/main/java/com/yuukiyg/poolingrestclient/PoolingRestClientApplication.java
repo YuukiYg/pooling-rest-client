@@ -4,14 +4,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.yuukiyg.poolingrestclient.service.SendRequestService;
+
 @SpringBootApplication
 public class PoolingRestClientApplication {
 
     public static void main(String[] args) {
         // SpringApplication.run(PoolingRestClientApplication.class, args);
 
-        ConfigurableApplicationContext context = SpringApplication.run(PoolingRestClientApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(
+                PoolingRestClientApplication.class, args);
         SendRequestService service = context.getBean(SendRequestService.class);
         service.execute();
+
     }
 }
