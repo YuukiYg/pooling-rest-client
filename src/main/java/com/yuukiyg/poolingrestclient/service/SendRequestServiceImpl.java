@@ -6,6 +6,7 @@ package com.yuukiyg.poolingrestclient.service;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,9 @@ public class SendRequestServiceImpl implements SendRequestService{
     @Autowired
     RestTemplate restTemplate;
 
+    @Value("${targetserver.port}")
+    int serverPort;
+
     @Override
     public void execute() {
 
@@ -38,7 +42,7 @@ public class SendRequestServiceImpl implements SendRequestService{
                 @Override
                 public void run() {
 
-                    URI uri = URI.create("http://localhost:11111/wait");
+                    URI uri = URI.create("http://localhost:"+serverPort+"/wait");
                     UriComponentsBuilder builder = UriComponentsBuilder.fromUri(uri);
                     MultiValueMap<String, String> urlParameters = new LinkedMultiValueMap<String, String>();
                     urlParameters.add("time", "10000");
